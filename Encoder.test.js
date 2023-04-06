@@ -1,4 +1,4 @@
-const {encode, decode} = require('./Encoder.js');
+import { encode, decode } from './Encoder.js';
 
 test('empty string', () => {
   const str = "";
