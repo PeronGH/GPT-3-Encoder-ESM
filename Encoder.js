@@ -1,6 +1,6 @@
 // This file includes code which was modified from https://github.com/openai/gpt-2
 import encoder from './encoder.json' assert { type: 'json'}
-import bpe_file from './vocab.json' assert { type: 'json'}
+import bpe_file_lines from './vocab.json' assert { type: 'json'}
 
 const range = (x, y) => {
   const res = Array.from(Array(y).keys()).slice(x)
@@ -67,10 +67,8 @@ const pat = /'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!
 const decoder = {}
 Object.keys(encoder).map(x => { decoder[encoder[x]] = x })
 
-const lines = bpe_file.lines
-
 // bpe_merges = [tuple(merge_str.split()) for merge_str in bpe_data.split("\n")[1:-1]]
-const bpe_merges = lines.slice(1, lines.length - 1).map(x => {
+const bpe_merges = bpe_file_lines.slice(1, bpe_file_lines.length - 1).map(x => {
   return x.split(/(\s+)/).filter(function(e) { return e.trim().length > 0 })
 })
 
